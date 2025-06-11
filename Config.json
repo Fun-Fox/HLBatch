@@ -1,0 +1,17 @@
+[
+  {
+    "model": "T2V-01-Director",
+    "prompt": "一只灰白色毛发覆盖全身的雪豹矫健地穿梭在积雪覆盖的岩石间，黑色斑点在其皮毛上若隐若现。[拉远,上升,下摇]",
+    "prompt_optimizer": true
+  },
+  {
+    "model": "I2V-01-Director",
+    "prompt": "微风轻拂，草地摇晃，阳光穿过树叶形成丁达尔效应[拉远,变焦拉远,上摇]",
+    "first_frame_image": "images/nature.jpg"
+  },
+  {
+    "model": "S2V-01",
+    "prompt": "主角在海滩上奔跑，面带微笑",
+    "subject_reference": "images/person.jpg"
+  }
+]

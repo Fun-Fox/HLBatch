@@ -1,0 +1,14 @@
+[
+  {
+    "task_id": "278789303406832",
+    "status": "Completed",
+    "output_file": "output\\video_1_278789303406832.mp4",
+    "original_task": {
+      "model": "T2V-01-Director",
+      "prompt": "来一个算一个，算数的中国算数有意思的地方",
+      "prompt_optimizer": true
+    },
+    "current_status": "Success",
+    "video_url": "278805546746059"
+  }
+]
