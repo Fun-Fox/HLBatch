@@ -1,7 +1,3 @@
-/llava_model
-/llava_model/*
 *.idea
 /.idea
-/fancyfeasts
-/remote_caption_mcp_server/fancyfeast
 */__pycache__
