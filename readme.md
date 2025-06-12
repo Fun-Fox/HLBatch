@@ -19,10 +19,11 @@
 ## 用于HaiLuo页面端的批量图生图工具
 
 ### 快速使用
-![](doc/auto-2.png)
+![](doc/auto-3.png)
+
 此工具适用于，使用月度666 高级无限账号
 6s视频长度， 全天跑可生成800个视频
 
 ![](doc/auto-4.png)
+![](doc/auto-2.png)
 
-![](doc/auto-3.png)
