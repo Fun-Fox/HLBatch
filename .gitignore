@@ -3,3 +3,7 @@
 */__pycache__
 /ui_batch/downloads
 /ui_batch/record
+/api_batch/output
+/api_batch/*.db
+*.db
+/api_batch/hailuo_tasks.db
