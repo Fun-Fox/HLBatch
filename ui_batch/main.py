@@ -87,6 +87,27 @@ def main():
     """
     print("=== Hailuo AI 自动化工具 ===")
 
+
+    # 参考图目录
+    reference_image_dir = "record/wwe"
+    # 提示词列表目录
+    excel_file = "record/prompts-wwe.xlsx"
+    # xlsx的sheet名称
+    sheet_name = "Sheet1"
+    # 最多只能有5个队列
+    asyncio.run(
+        start(
+            reference_image_dir,
+            excel_file,
+            sheet_name,
+            logging=logger,
+            batch_size=5,
+            sleep_minutes=5,
+            only_download=False,
+            total_downloads=500
+        )
+    )
+
     # reference_image_dir = "record/labubu"
     # excel_file = "record/prompts-labubu.xlsx"
     # sheet_name = "Sheet1"
@@ -103,22 +124,6 @@ def main():
     #         total_downloads=386
     #     )
     # )
-    reference_image_dir = "record/wwe"
-    excel_file = "record/prompts-wwe.xlsx"
-    sheet_name = "Sheet1"
-    # 最多只能有5个队列
-    asyncio.run(
-        start(
-            reference_image_dir,
-            excel_file,
-            sheet_name,
-            logging=logger,
-            batch_size=5,
-            sleep_minutes=5,
-            only_download=False,
-            total_downloads=500
-        )
-    )
 
 
 if __name__ == "__main__":
