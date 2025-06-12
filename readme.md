@@ -15,7 +15,6 @@
 - api_batch目录下
 - pip -r requirements.txt 安装依赖
 - streamlit run hailuo_ui.py
-  ![](doc/2.png)
 
 ![](doc/1.png)
 
