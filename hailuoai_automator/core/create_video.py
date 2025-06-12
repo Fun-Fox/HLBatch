@@ -33,7 +33,14 @@ async def create_video_by_image(page, logging, reference_image_path, prompt, num
 
     # 设置"生成数量"
     await generation_count_input.fill(f"{num}")  # Replace "新的数量值" with the desired value
+    # 定位并点击 div 拉下框
+    dropdown_div = page.locator(
+        'div.ant-popover-open')
+    await dropdown_div.click()
 
+    # 选择 "I2V-01-live" 选项
+    i2v_live_option = page.locator('div.gap-1>div:nth-child(2)')
+    await i2v_live_option.click()
     # 点击生成
     button_locator = page.locator('div.relative > button.new-color-btn-bg')  # 定位按钮
     await button_locator.click()  # 点击按钮
