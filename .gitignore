@@ -1,5 +1,5 @@
 *.idea
 /.idea
 */__pycache__
-/hailuoai_automator/downloads
-/hailuoai_automator/record
+/ui_batch/downloads
+/ui_batch/record
