@@ -5,10 +5,10 @@ from pathlib import Path
 
 import pandas as pd
 
-from ui_automator.core import init_browser, close_browser
+from core import init_browser, close_browser
 from loguru import logger
 
-from ui_automator.core.create_video import create_video_by_image, batch_download_video
+from core.create_video import create_video_by_image, batch_download_video
 
 
 async def start(reference_image_dir, excel_file, sheet_name, logging, batch_size=5, sleep_minutes=20,
