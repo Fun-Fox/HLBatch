@@ -12,7 +12,7 @@ from core.create_video import create_video_by_image, batch_download_video
 
 
 async def start(reference_image_dir, excel_file, sheet_name, logging, batch_size=5, sleep_minutes=20,
-                only_download=False, total_downloads=0, is_random=False):
+                only_download=False, total_downloads=0, is_random=False, num=1):
     # 读取 Excel 数据
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
@@ -47,10 +47,12 @@ async def start(reference_image_dir, excel_file, sheet_name, logging, batch_size
 
                         reference_image_path = str(random.choice(image_files))
 
+                    base_name = os.path.basename(reference_image_path)
+                    reference_image_path = os.path.join(reference_image_dir,base_name)
                     logging.info(f'使用图片：{reference_image_path}，提示词：{prompt}')
 
                     try:
-                        await create_video_by_image(page, logging, reference_image_path, prompt, num=1)
+                        await create_video_by_image(page, logging, reference_image_path, prompt, num=num)
                         df.at[index, 'reference_image_path'] = reference_image_path
                         total_executions += 1
                         executed_in_batch += 1
@@ -90,7 +92,27 @@ def main():
     主程序入口函数
     """
     print("=== Hailuo AI 自动化工具 ===")
-    #
+
+    # 参考图目录
+    reference_image_dir = "record/特朗普恶搞测试"
+    # 提示词列表目录
+    excel_file = "record/特朗普恶搞测试.xlsx"
+    # xlsx的sheet名称
+    sheet_name = "Sheet1"
+    # 最多只能有5个队列
+    asyncio.run(
+        start(
+            reference_image_dir,
+            excel_file,
+            sheet_name,
+            logging=logger,
+            batch_size=5,
+            sleep_minutes=5,
+            only_download=False,
+            total_downloads=500,
+            num=5
+        )
+    )
     #
     # # 参考图目录
     # reference_image_dir = "record/wwe"
@@ -112,39 +134,40 @@ def main():
     #     )
     # )
 
-    reference_image_dir = "record/labubu"
-    excel_file = "record/prompts-labubu.xlsx"
-    sheet_name = "Sheet1"
-    # 最多只能有5个队列
-    asyncio.run(
-        start(
-            reference_image_dir,
-            excel_file,
-            sheet_name,
-            logging=logger,
-            batch_size=5,
-            sleep_minutes=10,
-            only_download=False,
-            total_downloads=386
-        )
-    )
-
-    reference_image_dir = "record/man"
-    excel_file = "record/prompts-man.xlsx"
-    sheet_name = "Sheet1"
-    # 最多只能有5个队列
-    asyncio.run(
-        start(
-            reference_image_dir,
-            excel_file,
-            sheet_name,
-            logging=logger,
-            batch_size=5,
-            sleep_minutes=10,
-            only_download=False,
-            total_downloads=386
-        )
-    )
+    #
+    # reference_image_dir = "record/labubu"
+    # excel_file = "record/prompts-labubu.xlsx"
+    # sheet_name = "Sheet1"
+    # # 最多只能有5个队列
+    # asyncio.run(
+    #     start(
+    #         reference_image_dir,
+    #         excel_file,
+    #         sheet_name,
+    #         logging=logger,
+    #         batch_size=5,
+    #         sleep_minutes=10,
+    #         only_download=False,
+    #         total_downloads=386
+    #     )
+    # )
+    #
+    # reference_image_dir = "record/man"
+    # excel_file = "record/prompts-man.xlsx"
+    # sheet_name = "Sheet1"
+    # # 最多只能有5个队列
+    # asyncio.run(
+    #     start(
+    #         reference_image_dir,
+    #         excel_file,
+    #         sheet_name,
+    #         logging=logger,
+    #         batch_size=5,
+    #         sleep_minutes=10,
+    #         only_download=False,
+    #         total_downloads=386
+    #     )
+    # )
 
     # reference_image_dir = "record/ws"
     # # 提示词列表目录

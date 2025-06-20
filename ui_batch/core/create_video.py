@@ -34,8 +34,7 @@ async def create_video_by_image(page, logging, reference_image_path, prompt, num
     # 设置"生成数量"
     await generation_count_input.fill(f"{num}")  # Replace "新的数量值" with the desired value
     # 定位并点击 div 拉下框
-    dropdown_div = page.locator('div.w-full>div.border-transparent.box-border')
-
+    dropdown_div = page.locator('div.container-padding-x> div > div:nth-child(1) >div.w-full>div.border-transparent.box-border')
     await dropdown_div.click()
 
     # 选择 "I2V-01-live" 选项
