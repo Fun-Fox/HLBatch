@@ -12,7 +12,7 @@ from core.create_video import create_video_by_image, batch_download_video
 
 
 async def start(reference_image_dir, excel_file, sheet_name, logging, batch_size=5, sleep_minutes=20,
-                only_download=False, total_downloads=0):
+                only_download=False, total_downloads=0, is_random=False):
     # 读取 Excel 数据
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
@@ -33,16 +33,20 @@ async def start(reference_image_dir, excel_file, sheet_name, logging, batch_size
                 executed_in_batch = 0
 
                 for index, row in batch_prompts.iterrows():
-                    if not pd.isna(row['reference_image_path']):
-                        continue  # 已处理过，跳过
-
                     prompt = row['prompt']
-                    image_files = list(Path(reference_image_dir).glob('*.*'))
-                    if not image_files:
-                        logging.error("未找到可用图片文件")
-                        break
+                    if not pd.isna(row['reference_image_path']):
+                        if is_random:
+                            continue  # 已处理过，跳过
 
-                    reference_image_path = str(random.choice(image_files))
+                        reference_image_path = row['reference_image_path']
+                    else:
+                        image_files = list(Path(reference_image_dir).glob('*.*'))
+                        if not image_files:
+                            logging.error("未找到可用图片文件")
+                            break
+
+                        reference_image_path = str(random.choice(image_files))
+
                     logging.info(f'使用图片：{reference_image_path}，提示词：{prompt}')
 
                     try:
@@ -86,30 +90,13 @@ def main():
     主程序入口函数
     """
     print("=== Hailuo AI 自动化工具 ===")
-
-
-    # 参考图目录
-    reference_image_dir = "record/wwe"
-    # 提示词列表目录
-    excel_file = "record/prompts-wwe.xlsx"
-    # xlsx的sheet名称
-    sheet_name = "Sheet1"
-    # 最多只能有5个队列
-    asyncio.run(
-        start(
-            reference_image_dir,
-            excel_file,
-            sheet_name,
-            logging=logger,
-            batch_size=5,
-            sleep_minutes=5,
-            only_download=False,
-            total_downloads=500
-        )
-    )
-
-    # reference_image_dir = "record/labubu"
-    # excel_file = "record/prompts-labubu.xlsx"
+    #
+    #
+    # # 参考图目录
+    # reference_image_dir = "record/wwe"
+    # # 提示词列表目录
+    # excel_file = "record/prompts-wwe.xlsx"
+    # # xlsx的sheet名称
     # sheet_name = "Sheet1"
     # # 最多只能有5个队列
     # asyncio.run(
@@ -119,9 +106,62 @@ def main():
     #         sheet_name,
     #         logging=logger,
     #         batch_size=5,
-    #         sleep_minutes=10,
-    #         only_download=True,
-    #         total_downloads=386
+    #         sleep_minutes=5,
+    #         only_download=False,
+    #         total_downloads=500
+    #     )
+    # )
+
+    reference_image_dir = "record/labubu"
+    excel_file = "record/prompts-labubu.xlsx"
+    sheet_name = "Sheet1"
+    # 最多只能有5个队列
+    asyncio.run(
+        start(
+            reference_image_dir,
+            excel_file,
+            sheet_name,
+            logging=logger,
+            batch_size=5,
+            sleep_minutes=10,
+            only_download=False,
+            total_downloads=386
+        )
+    )
+
+    reference_image_dir = "record/man"
+    excel_file = "record/prompts-man.xlsx"
+    sheet_name = "Sheet1"
+    # 最多只能有5个队列
+    asyncio.run(
+        start(
+            reference_image_dir,
+            excel_file,
+            sheet_name,
+            logging=logger,
+            batch_size=5,
+            sleep_minutes=10,
+            only_download=False,
+            total_downloads=386
+        )
+    )
+
+    # reference_image_dir = "record/ws"
+    # # 提示词列表目录
+    # excel_file = "record/prompts-ws.xlsx"
+    # # xlsx的sheet名称
+    # sheet_name = "Sheet1"
+    # # 最多只能有5个队列
+    # asyncio.run(
+    #     start(
+    #         reference_image_dir,
+    #         excel_file,
+    #         sheet_name,
+    #         logging=logger,
+    #         batch_size=5,
+    #         sleep_minutes=5,
+    #         only_download=False,
+    #         total_downloads=500
     #     )
     # )
 
