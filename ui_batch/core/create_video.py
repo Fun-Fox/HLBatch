@@ -38,7 +38,8 @@ async def create_video_by_image(page, logging, reference_image_path, prompt, num
     await dropdown_div.click()
 
     # 选择 "I2V-01-live" 选项
-    i2v_live_option = page.locator('div.gap-1>div:nth-child(2)')
+    i2v_live_option = page.locator('div.flex.flex-col.gap-1 > div:nth-child(3)')
+
     await i2v_live_option.click()
     # 点击生成
     button_locator = page.locator('div.relative > button.new-color-btn-bg')  # 定位按钮

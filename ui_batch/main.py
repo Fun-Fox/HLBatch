@@ -93,10 +93,10 @@ def main():
     """
     print("=== Hailuo AI 自动化工具 ===")
 
-    # 参考图目录
-    reference_image_dir = "record/特朗普恶搞测试"
-    # 提示词列表目录
-    excel_file = "record/特朗普恶搞测试.xlsx"
+    # # 参考图目录
+    reference_image_dir = "record/hailuo-img"
+    # # 提示词列表目录
+    excel_file = "record/0703海螺提示词中文.xlsx"
     # xlsx的sheet名称
     sheet_name = "Sheet1"
     # 最多只能有5个队列
@@ -106,11 +106,11 @@ def main():
             excel_file,
             sheet_name,
             logging=logger,
-            batch_size=5,
+            batch_size=1,
             sleep_minutes=5,
             only_download=False,
             total_downloads=500,
-            num=5
+            num=2
         )
     )
     #
